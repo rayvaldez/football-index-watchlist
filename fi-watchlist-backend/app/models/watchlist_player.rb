@@ -1,3 +1,3 @@
 class WatchlistPlayer < ApplicationRecord
-  belongs_to :player
+  has_many :players
 end
