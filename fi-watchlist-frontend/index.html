@@ -10,32 +10,57 @@
     <div class="container-fluid">
     	<div class="row">
     		<div class="col-md-12">
-    			<div class="page-header">
+    			<div class="jumbotron">
     				<h1>
     					Football Index Watchlist
     				</h1>
     			</div>
     		</div>
     	</div>
-      <div class="col-md-5" id='market'>
-        <span class="d-block p-2 bg-dark text-white">Market</span>
+    	<div class="row">
+    		<div class="col-md-7">
+          <span class="d-block p-2 bg-dark text-white">Watchlist</span>
 
-        <table class="table" id="players-table">
-          <thead class="thead-light">
-            <tr>
-              <th scope="col">Player</th>
-              <th scope="col">Team</th>
-              <th scope="col">Cost</th>
-            </tr>
-          </thead>
-          <tbody>
+          <table class="table" id="watchlist-players-table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Player</th>
+                <th scope="col">Team</th>
+                <th scope="col">Cost /w added</th>
+                <th scope="col">Current Cost</th>
+                <th scope="col">£ Change</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+    		</div>
+    		<div class="col-md-5" id='market'>
+          <span class="d-block p-2 bg-dark text-white">Market</span>
+
+            <table class="table" id="players-table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Player</th>
+                  <th scope="col">Team</th>
+                  <th scope="col">Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+
+
+            <div id="players-container">
+
+            </div>
+      		</div>
+      	</div>
       </div>
-    </div>
-
-
+          
     <script type="text/javascript" src="src/components/player.js"></script>
     <script src="src/components/players.js"></script>
     <!-- <script src="src/components/watchlist_players.js"></script> -->
