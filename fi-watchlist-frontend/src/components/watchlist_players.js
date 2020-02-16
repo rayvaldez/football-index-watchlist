@@ -7,10 +7,15 @@ class WatchlistPlayers {
   }
 
   initiBindingsAndEventListeners() {
-
+    this.playerClick = document.getElementById('market')
+    this.playerClick.addEventListener('click', this.fetchAndLoadPlayer)
   }
 
   fetchWatchlistPlayers() {
-    
+
+  }
+
+  fetchAndLoadPlayer(e) {
+    e.preventDefault()
   }
 }
