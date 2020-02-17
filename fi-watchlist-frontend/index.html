@@ -61,6 +61,26 @@
     	</div>
     </div>
 
+    <!-- Add Player Modal -->
+    <div class="modal fade" id="playerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" id="player-show-name">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="player-show-info">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button id="player-submit" type="submit" class="btn btn-primary" data-dismiss="modal">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>    
+
     <script type="text/javascript" src="src/components/player.js"></script>
     <script src="src/components/players.js"></script>
     <script src="src/components/watchlist_players.js"></script>
