@@ -1,8 +1,13 @@
 class WatchlistPlayersAdapter {
   constructor() {
     this.baseUrl = 'http://localhost:3000/api/v1/watchlist_players'
-    this.playersUrl = 'http://localhost:3000/api/v1/players'    
+    this.playersUrl = 'http://localhost:3000/api/v1/players'
   }
+
+  getWatchlistPlayers() {
+    return fetch(this.baseUrl).then(res => res.json()
+    )
+  }  
 
   createWatchlistPlayer(playerJSON) {
     const watchlist_player = playerJSON

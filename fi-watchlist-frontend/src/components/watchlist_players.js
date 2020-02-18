@@ -14,7 +14,13 @@ class WatchlistPlayers {
   }
 
   fetchWatchlistPlayers() {
-
+    this.adapter
+    .getWatchlistPlayers()
+    .then(watchlistPlayers => {
+      watchlistPlayers.forEach(player => {
+        this.appendPlayer(player.player_id, player)
+      })
+    })
   }
 
   fetchAndLoadPlayer(e) {
@@ -61,5 +67,5 @@ class WatchlistPlayers {
       const newRow = table.insertRow(table.rows.length)
       newRow.innerHTML = playerHTML
     })
-  }  
+  }
 }
