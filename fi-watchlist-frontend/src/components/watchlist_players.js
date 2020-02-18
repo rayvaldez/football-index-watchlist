@@ -11,6 +11,8 @@ class WatchlistPlayers {
     this.playerClick.addEventListener('click', this.fetchAndLoadPlayer)
     this.addToWatchList = document.getElementById('player-submit')
     this.addToWatchList.addEventListener('click', this.createWatchlistPlayer.bind(this))
+    this.confirmPlayerRemove = document.getElementById('watchlist-players-table')
+    this.confirmPlayerRemove.addEventListener('click', this.confirmRemove)
   }
 
   fetchWatchlistPlayers() {
@@ -68,4 +70,13 @@ class WatchlistPlayers {
       newRow.innerHTML = playerHTML
     })
   }
+
+  confirmRemove(e) {
+    e.preventDefault()
+    document.getElementById('remove-player-content').innerHTML = `
+    <h5>Remove Player?</h5>
+    <input type="hidden" id="remove-player-id" value="${e.target.dataset.id}"/>
+    `
+  }
+
 }
