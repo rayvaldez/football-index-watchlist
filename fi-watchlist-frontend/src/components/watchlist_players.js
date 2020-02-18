@@ -9,6 +9,8 @@ class WatchlistPlayers {
   initiBindingsAndEventListeners() {
     this.playerClick = document.getElementById('market')
     this.playerClick.addEventListener('click', this.fetchAndLoadPlayer)
+    this.addToWatchList = document.getElementById('player-submit')
+    this.addToWatchList.addEventListener('click', this.createWatchlistPlayer.bind(this))
   }
 
   fetchWatchlistPlayers() {
@@ -28,5 +30,13 @@ class WatchlistPlayers {
       <h6>Cost - £${json.cost}</h6>
       `
     })
+  }
+
+  createWatchlistPlayer(e) {
+    e.preventDefault()
+    const playerId = document.getElementById('player-id').value
+    const playerCost = document.getElementById('player-cost').value
+    const playerJSON = {player_id: playerId, cost: playerCost}
+    console.log(playerId, playerCost, playerJSON)
   }
 }
