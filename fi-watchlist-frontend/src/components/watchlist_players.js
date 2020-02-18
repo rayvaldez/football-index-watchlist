@@ -37,6 +37,29 @@ class WatchlistPlayers {
     const playerId = document.getElementById('player-id').value
     const playerCost = document.getElementById('player-cost').value
     const playerJSON = {player_id: playerId, cost: playerCost}
-    console.log(playerId, playerCost, playerJSON)
+    this.adapter.createWatchlistPlayer(playerJSON).then(watchlistPlayer => {
+      this.appendPlayer(watchlistPlayer.player_id, watchlistPlayer)
+    })
   }
+
+  appendPlayer(playerId, watchlistPlayer) {
+    this.adapter
+    .getPlayer(playerId)
+    .then(json => {
+      const playerHTML = `
+      <tr>
+      <td>${json.name}</td>
+      <td>${json.team}</td>
+      <td>£${watchlistPlayer.cost}</td>
+      <td>£${json.cost}</td>
+      <td>£${(json.cost - watchlistPlayer.cost).toFixed(2)}</td>
+      <td><button type="button" data-id="${watchlistPlayer.id}" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Remove</button></td>
+      </tr>
+      `
+      // <td><button type="button" class="btn btn-secondary btn-sm" id="remove-player">Remove</button></td>
+      const table = document.getElementById('watchlist-players-table').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow(table.rows.length)
+      newRow.innerHTML = playerHTML
+    })
+  }  
 }
