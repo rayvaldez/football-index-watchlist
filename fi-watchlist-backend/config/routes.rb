@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :players, only: [:index, :show]
 
+      resources :watchlist_players
     end
   end
 end
