@@ -7,7 +7,7 @@ class WatchlistPlayersAdapter {
   getWatchlistPlayers() {
     return fetch(this.baseUrl).then(res => res.json()
     )
-  }  
+  }
 
   createWatchlistPlayer(playerJSON) {
     const watchlist_player = playerJSON
@@ -25,4 +25,13 @@ class WatchlistPlayersAdapter {
     return fetch(this.playersUrl + '/' + playerId).then(res => res.json()
     )
   }
+
+  removeWatchedPlayer(playerId) {
+    const watchlistPlayerId = playerId
+    return fetch(this.baseUrl + '/' + watchlistPlayerId, {
+      method: 'delete'
+    })
+    .then(response => response.text())
+  }
+  
 }
