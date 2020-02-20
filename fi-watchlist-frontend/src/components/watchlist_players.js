@@ -14,7 +14,7 @@ class WatchlistPlayers {
     this.confirmPlayerRemove = document.getElementById('watchlist-players-table')
     this.confirmPlayerRemove.addEventListener('click', this.confirmRemove)
     this.removeWatchlistPlayer = document.getElementById('confirm-remove')
-    this.removeWatchlistPlayer.addEventListener('click', this.removePlayer.bind(this))    
+    this.removeWatchlistPlayer.addEventListener('click', this.removePlayer.bind(this))
   }
 
   fetchWatchlistPlayers() {
@@ -84,7 +84,6 @@ class WatchlistPlayers {
   removePlayer(e) {
     e.preventDefault()
     const removePlayerId = document.getElementById('remove-player-id').value
-    // this.adapter.removeWatchedPlayer(removePlayerId)
-    console.log('removed')
+    this.adapter.removeWatchedPlayer(removePlayerId)
   }
 }

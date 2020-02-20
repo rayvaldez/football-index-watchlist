@@ -18,6 +18,12 @@ class Api::V1::WatchlistPlayersController < ApplicationController
     render json: watchlist_player, status:200
   end
 
+  def destroy
+    watchlist_player = WatchlistPlayer.find(params[:id])
+
+    watchlist_player.destroy
+  end
+
   private
 
   def watchlist_player_params

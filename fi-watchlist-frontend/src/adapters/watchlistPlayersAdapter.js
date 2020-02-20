@@ -31,7 +31,11 @@ class WatchlistPlayersAdapter {
     return fetch(this.baseUrl + '/' + watchlistPlayerId, {
       method: 'delete'
     })
-    .then(response => response.text())
+    .then(() => {
+       console.log('removed');
+    }).catch(err => {
+      console.error(err)
+    })
   }
-  
+
 }
