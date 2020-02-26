@@ -70,6 +70,7 @@ class WatchlistPlayers {
       const table = document.getElementById('watchlist-players-table').getElementsByTagName('tbody')[0];
       const newRow = table.insertRow(table.rows.length)
       newRow.innerHTML = playerHTML
+      newRow.id = watchlistPlayer.id
     })
   }
 
@@ -84,6 +85,10 @@ class WatchlistPlayers {
   removePlayer(e) {
     e.preventDefault()
     const removePlayerId = document.getElementById('remove-player-id').value
+    const table = document.getElementById('watchlist-players-table');
+    const tbody = table.getElementsByTagName('tbody')[0]
+    const row = this.confirmPlayerRemove.getElementsByTagName('tr').namedItem(removePlayerId)
     this.adapter.removeWatchedPlayer(removePlayerId)
+    tbody.removeChild(row)
   }
 }
