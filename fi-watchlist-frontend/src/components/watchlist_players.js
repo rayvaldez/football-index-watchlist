@@ -62,7 +62,7 @@ class WatchlistPlayers {
       <td>${json.team}</td>
       <td>£${watchlistPlayer.cost}</td>
       <td>£${json.cost}</td>
-      <td>£${(json.cost - watchlistPlayer.cost).toFixed(2)}</td>
+      <td class="cost">£${(json.cost - watchlistPlayer.cost).toFixed(2)}</td>
       <td><button type="button" data-id="${watchlistPlayer.id}" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Remove</button></td>
       </tr>
       `
@@ -71,6 +71,8 @@ class WatchlistPlayers {
       const newRow = table.insertRow(table.rows.length)
       newRow.innerHTML = playerHTML
       newRow.id = watchlistPlayer.id
+      $('td.cost').css('color', 'green')
+      $('td.cost:contains('-')').css('color', 'red')
     })
   }
 
