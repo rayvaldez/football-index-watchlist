@@ -72,7 +72,7 @@ class WatchlistPlayers {
       newRow.innerHTML = playerHTML
       newRow.id = watchlistPlayer.id
       $('td.cost').css('color', 'green')
-      $('td.cost:contains('-')').css('color', 'red')
+      $('td.cost:contains(-)').css('color', 'red')
     })
   }
 
