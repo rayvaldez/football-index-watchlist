@@ -27,7 +27,7 @@ class Api::V1::WatchlistPlayersController < ApplicationController
   private
 
   def watchlist_player_params
-    params.require(:watchlist_player).permit(:player_id, :cost)
+    params.require(:watchlist_player).permit(:player_id, :name, :team, :cost)
   end
 
 end
