@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_15_000534) do
+ActiveRecord::Schema.define(version: 2020_03_16_224212) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2020_02_15_000534) do
     t.integer "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "team"
     t.index ["player_id"], name: "index_watchlist_players_on_player_id"
   end
 

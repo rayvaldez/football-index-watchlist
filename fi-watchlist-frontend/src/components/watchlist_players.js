@@ -22,6 +22,7 @@ class WatchlistPlayers {
     .getWatchlistPlayers()
     .then(watchlistPlayers => {
       watchlistPlayers.forEach(player => {
+        console.log(player)
         this.appendPlayer(player.player_id, player)
       })
     })
@@ -35,6 +36,8 @@ class WatchlistPlayers {
       document.getElementById('player-show-name').innerHTML = `<h4>Add ${json.name} to Watchlist?</h4>`
       document.getElementById('player-show-info').innerHTML = `
       <input type="hidden" id="player-id" value="${json.id}" />
+      <input type="hidden" id="player-name" value="${json.name}" />
+      <input type="hidden" id="player-team" value="${json.team}" />
       <input type="hidden" id="player-cost" value="${json.cost}" />
       <h6>Team - ${json.team}</h6> <br />
       <h6>Cost - £${json.cost}</h6>
@@ -45,8 +48,10 @@ class WatchlistPlayers {
   createWatchlistPlayer(e) {
     e.preventDefault()
     const playerId = document.getElementById('player-id').value
+    const playerName = document.getElementById('player-name').value
+    const playerTeam = document.getElementById('player-team').value
     const playerCost = document.getElementById('player-cost').value
-    const playerJSON = {player_id: playerId, cost: playerCost}
+    const playerJSON = {player_id: playerId, name: playerName, team: playerTeam, cost: playerCost}
     this.adapter.createWatchlistPlayer(playerJSON).then(watchlistPlayer => {
       this.appendPlayer(watchlistPlayer.player_id, watchlistPlayer)
     })
