@@ -22,8 +22,7 @@ class WatchlistPlayers {
     .getWatchlistPlayers()
     .then(watchlistPlayers => {
       watchlistPlayers.forEach(player => {
-        console.log(player)
-        this.appendPlayer(player.player_id, player)
+        this.appendPlayer(player)
       })
     })
   }
@@ -53,21 +52,18 @@ class WatchlistPlayers {
     const playerCost = document.getElementById('player-cost').value
     const playerJSON = {player_id: playerId, name: playerName, team: playerTeam, cost: playerCost}
     this.adapter.createWatchlistPlayer(playerJSON).then(watchlistPlayer => {
-      this.appendPlayer(watchlistPlayer.player_id, watchlistPlayer)
+      this.appendPlayer(watchlistPlayer)
     })
   }
 
-  appendPlayer(playerId, watchlistPlayer) {
-    this.adapter
-    .getPlayer(playerId)
-    .then(json => {
+  appendPlayer(watchlistPlayer) {
       const playerHTML = `
       <tr>
-      <td>${json.name}</td>
-      <td>${json.team}</td>
+      <td>${watchlistPlayer.name}</td>
+      <td>${watchlistPlayer.team}</td>
       <td>£${watchlistPlayer.cost}</td>
-      <td>£${json.cost}</td>
-      <td class="cost">£${(json.cost - watchlistPlayer.cost).toFixed(2)}</td>
+      <td class=${watchlistPlayer.id}-current-cost></td>
+      <td class=${watchlistPlayer.id}-difference></td>
       <td><button type="button" data-id="${watchlistPlayer.id}" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Remove</button></td>
       </tr>
       `
@@ -76,8 +72,18 @@ class WatchlistPlayers {
       const newRow = table.insertRow(table.rows.length)
       newRow.innerHTML = playerHTML
       newRow.id = watchlistPlayer.id
-      $('td.cost').css('color', 'green')
-      $('td.cost:contains(-)').css('color', 'red')
+
+      this.getCurrentCost(watchlistPlayer)
+  }
+
+  getCurrentCost(player) {
+    this.adapter
+    .getPlayer(player.player_id)
+    .then(json => {
+      $(`td.${player.id}-current-cost`).text(`£${json.cost}`)
+      $(`td.${player.id}-difference`).text(`£${(json.cost - player.cost).toFixed(2)}`)
+      $(`td.${player.id}-difference`).css('color', 'green')
+      $(`td.${player.id}-difference:contains(-)`).css('color', 'red')
     })
   }
 
