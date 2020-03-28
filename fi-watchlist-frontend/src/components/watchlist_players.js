@@ -11,6 +11,8 @@ class WatchlistPlayers {
     this.playerClick.addEventListener('click', this.fetchAndLoadPlayer)
     this.addToWatchList = document.getElementById('player-submit')
     this.addToWatchList.addEventListener('click', this.createWatchlistPlayer.bind(this))
+    this.confirmUpdatePlayer = document.getElementById('confirm-update')
+    this.confirmUpdatePlayer.addEventListener('click', this.confirmUpdate.bind(this))
     this.confirmPlayerRemove = document.getElementById('watchlist-players-table')
     this.confirmPlayerRemove.addEventListener('click', this.confirmRemove)
     this.removeWatchlistPlayer = document.getElementById('confirm-remove')
@@ -64,7 +66,7 @@ class WatchlistPlayers {
       <td>£${watchlistPlayer.cost}</td>
       <td class=${watchlistPlayer.id}-current-cost></td>
       <td class=${watchlistPlayer.id}-difference></td>
-      <td><button type="button" data-id="${watchlistPlayer.id}" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Remove</button></td>
+      <td><button type="button" data-id="${watchlistPlayer.id}" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Update/Remove</button></td>
       </tr>
       `
       // <td><button type="button" class="btn btn-secondary btn-sm" id="remove-player">Remove</button></td>
@@ -89,10 +91,20 @@ class WatchlistPlayers {
 
   confirmRemove(e) {
     e.preventDefault()
+    const cost = $(`td.${e.target.dataset.id}-current-cost`).text().substr(1)
     document.getElementById('remove-player-content').innerHTML = `
-    <h5>Remove Player?</h5>
+    <h5>Update/Remove Player?</h5> <br />
+    <p>Updating will reset the cost.</p>
     <input type="hidden" id="remove-player-id" value="${e.target.dataset.id}"/>
+    <input type="hidden" id="update-current-cost" value="${cost}" />
     `
+  }
+
+  confirmUpdate(e) {
+    e.preventDefault()
+    const playerId = document.getElementById('remove-player-id').value
+    const currentPlayerCost = document.getElementById('update-current-cost').value
+    console.log(playerId, currentPlayerCost)
   }
 
   removePlayer(e) {
