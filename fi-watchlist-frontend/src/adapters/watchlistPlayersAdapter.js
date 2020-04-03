@@ -26,6 +26,17 @@ class WatchlistPlayersAdapter {
     )
   }
 
+  updatePlayer(playerJSON) {
+    return fetch(this.baseUrl + '/' + playerJSON.id, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(playerJSON)
+    }).then(res => res.json())
+  }
+
   removeWatchedPlayer(playerId) {
     const watchlistPlayerId = playerId
     return fetch(this.baseUrl + '/' + watchlistPlayerId, {

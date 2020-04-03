@@ -104,7 +104,13 @@ class WatchlistPlayers {
     e.preventDefault()
     const playerId = document.getElementById('remove-player-id').value
     const currentPlayerCost = document.getElementById('update-current-cost').value
-    console.log(playerId, currentPlayerCost)
+    const playerJSON = {id: playerId, cost: currentPlayerCost}
+
+    this.adapter
+    .updatePlayer(playerJSON)
+    .then(
+      $('#watchlist-players-table tbody').text('')
+    ).then(this.fetchWatchlistPlayers())
   }
 
   removePlayer(e) {
