@@ -15,7 +15,11 @@ class Api::V1::WatchlistPlayersController < ApplicationController
   def create
     watchlist_player = WatchlistPlayer.create(watchlist_player_params)
 
-    render json: watchlist_player, status:200
+    if watchlist_player.save
+      render json: watchlist_player, status:200
+    else
+      render json: watchlist_player, status:400
+    end
   end
 
   def update

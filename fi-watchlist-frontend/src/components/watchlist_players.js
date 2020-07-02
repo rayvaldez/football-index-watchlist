@@ -110,7 +110,7 @@ class WatchlistPlayers {
     .updatePlayer(playerJSON)
     .then(
       $('#watchlist-players-table tbody').text('')
-    ).then(this.fetchWatchlistPlayers())
+    ).then(() => this.fetchWatchlistPlayers())
   }
 
   removePlayer(e) {

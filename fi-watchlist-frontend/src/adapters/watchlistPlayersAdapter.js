@@ -18,7 +18,13 @@ class WatchlistPlayersAdapter {
         "Accept": "application/json"
       },
       body: JSON.stringify(watchlist_player)
-    }).then(res => res.json())
+    }).then((response) => {
+      if (response.status == 200) {
+        return response.json();
+      } else {
+        throw Error(response.statusText)
+      }
+    }).catch(error => alert("Error! Player has already been added."))
   }
 
   getPlayer(playerId) {
