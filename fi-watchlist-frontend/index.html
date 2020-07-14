@@ -10,33 +10,37 @@
     <div class="container-fluid">
     	<div class="row">
     		<div class="col-md-12">
-    				 <img src="https://www.footballindex.co.uk/assets/icons/FI-Stacked-Invert-White.svg" alt="" width="300" height="150">
+    				 <img src="styles/images/FI-Stacked-Invert-White.svg" alt="" width="300" height="150">
     		</div>
     	</div>
     	<div class="row">
     		<div class="col-md-7">
           <span class="d-block p-2 bg-dark text-white">Watchlist</span>
 
-          <table class="table" id="watchlist-players-table">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Player</th>
-                <th scope="col">Team</th>
-                <th scope="col">Cost /w added</th>
-                <th scope="col">Current Cost</th>
-                <th scope="col">£ Change</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-bordered table-striped mb-0" id="watchlist-players-table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Player</th>
+                  <th scope="col">Team</th>
+                  <th scope="col">Cost /w added</th>
+                  <th scope="col">Current Cost</th>
+                  <th scope="col">£ Change</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
     		</div>
     		<div class="col-md-5" id='market'>
           <span class="d-block p-2 bg-dark text-white">Market</span>
 
-            <table class="table" id="players-table">
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table class="table table-bordered table-striped mb-0" id="players-table">
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Player</th>
@@ -48,7 +52,7 @@
 
               </tbody>
             </table>
-
+          </div>
 
           <div id="players-container">
 
