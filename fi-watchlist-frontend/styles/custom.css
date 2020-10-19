@@ -22,3 +22,8 @@ overflow: auto;
 .table-wrapper-scroll-y {
 display: block;
 }
+
+img {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
