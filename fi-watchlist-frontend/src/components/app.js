@@ -1,6 +1,6 @@
 class App {
   constructor() {
-    this.players = new Players()
-    this.watchlists = new WatchlistPlayers()
+    this.players = new Players();
+    this.watchlists = new WatchlistPlayers();
   }
 }
