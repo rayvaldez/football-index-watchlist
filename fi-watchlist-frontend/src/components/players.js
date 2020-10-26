@@ -1,7 +1,6 @@
 class Players {
   constructor() {
     this.players = [];
-    this.player = {};
     this.adapter = new PlayersAdapter();
     this.initiBindingsAndEventListeners();
     this.fetchAndLoadPlayers();
@@ -26,7 +25,7 @@ class Players {
   }
 
   renderPlayers() {
-    document.getElementById('players-table').getElementsByTagName('tbody')[0]
+    this.playersTable.getElementsByTagName('tbody')[0]
       .innerHTML = this.players.map(player => player.renderTd()).join('');
   }
 }
