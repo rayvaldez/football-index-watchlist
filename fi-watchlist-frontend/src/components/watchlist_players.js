@@ -1,12 +1,6 @@
 class WatchlistPlayers {
-  constructor() {
-    this.watchlistPlayers = [];
-    this.adapter = new WatchlistPlayersAdapter();
-    this.initiBindingsAndEventListeners();
-    this.fetchWatchlistPlayers();
-  }
 
-  initiBindingsAndEventListeners() {
+  static initiBindingsAndEventListeners() {
     this.playerClick = document.getElementById('market');
     this.playerClick.addEventListener('click', this.fetchAndLoadPlayer);
     this.addToWatchList = document.getElementById('player-submit');
@@ -14,14 +8,14 @@ class WatchlistPlayers {
     this.confirmUpdatePlayer = document.getElementById('confirm-update');
     this.confirmUpdatePlayer.addEventListener('click', this.confirmUpdate.bind(this));
     this.confirmPlayerRemove = document.getElementById('watchlist-players-table');
-    this.confirmPlayerRemove.addEventListener('click', this.confirmRemove);
+    this.confirmPlayerRemove.addEventListener('click', this.confirmRemove.bind(this));
     this.removeWatchlistPlayer = document.getElementById('confirm-remove');
-    this.removeWatchlistPlayer.addEventListener('click', this.removePlayer.bind(this));
+    this.removeWatchlistPlayer.addEventListener('click', this.removePlayer);
   }
 
-  fetchWatchlistPlayers() {
-    this.adapter
-    .getWatchlistPlayers()
+  static fetchWatchlistPlayers() {
+    const watchlistPlayersAdapter = new WatchlistPlayersAdapter();
+    watchlistPlayersAdapter.getWatchlistPlayers()
     .then(watchlistPlayers => {
       watchlistPlayers.forEach(player => {
         this.appendPlayer(player);
@@ -29,7 +23,7 @@ class WatchlistPlayers {
     });
   }
 
-  fetchAndLoadPlayer(e) {
+  static fetchAndLoadPlayer(e) {
     e.preventDefault();
     return fetch(`${e.target}`)
     .then(res => res.json())
@@ -44,11 +38,12 @@ class WatchlistPlayers {
         <h6>Team - ${json.team}</h6> <br />
         <h6>Cost - £${json.cost}</h6>
       `;
-    });
+    }).catch(error => console.log('Please click on a player'));
   }
 
-  createWatchlistPlayer(e) {
+  static createWatchlistPlayer(e) {
     e.preventDefault();
+    const watchlistPlayersAdapter = new WatchlistPlayersAdapter();
     const playerId = document.getElementById('player-id').value;
     const playerName = document.getElementById('player-name').value;
     const playerTeam = document.getElementById('player-team').value;
@@ -58,12 +53,12 @@ class WatchlistPlayers {
       name: playerName,
       team: playerTeam,
       cost: playerCost, };
-    this.adapter.createWatchlistPlayer(playerJSON).then(watchlistPlayer => {
+    watchlistPlayersAdapter.createWatchlistPlayer(playerJSON).then(watchlistPlayer => {
       this.appendPlayer(watchlistPlayer);
     });
   }
 
-  appendPlayer(watchlistPlayer) {
+  static appendPlayer(watchlistPlayer) {
     const playerHTML = `
       <tr>
       <td>${watchlistPlayer.name}</td>
@@ -78,8 +73,7 @@ class WatchlistPlayers {
       </tr>
       `;
 
-    const table = document.getElementById('watchlist-players-table')
-      .getElementsByTagName('tbody')[0];
+    const table = document.getElementsByTagName('tbody')[0];
     const newRow = table.insertRow(table.rows.length);
     newRow.innerHTML = playerHTML;
     newRow.id = watchlistPlayer.id;
@@ -87,8 +81,9 @@ class WatchlistPlayers {
     this.getCurrentCost(watchlistPlayer);
   }
 
-  getCurrentCost(player) {
-    this.adapter
+  static getCurrentCost(player) {
+    const watchlistPlayersAdapter = new WatchlistPlayersAdapter();
+    watchlistPlayersAdapter
     .getPlayer(player.player_id)
     .then(json => {
       $(`td.${player.id}-current-cost`).text(`£${json.cost}`);
@@ -99,7 +94,7 @@ class WatchlistPlayers {
     });
   }
 
-  confirmRemove(e) {
+  static confirmRemove(e) {
     e.preventDefault();
     const cost = $(`td.${e.target.dataset.id}-current-cost`).text().substr(1);
     document.getElementById('remove-player-content').innerHTML = `
@@ -110,21 +105,21 @@ class WatchlistPlayers {
     `;
   }
 
-  confirmUpdate(e) {
+  static confirmUpdate(e) {
     e.preventDefault();
+    const watchlistPlayersAdapter = new WatchlistPlayersAdapter();
     const playerId = document.getElementById('remove-player-id').value;
     const currentPlayerCost = document.getElementById('update-current-cost')
       .value;
     const playerJSON = { id: playerId, cost: currentPlayerCost };
 
-    this.adapter
-    .updatePlayer(playerJSON)
+    watchlistPlayersAdapter.updatePlayer(playerJSON)
     .then(
       $('#watchlist-players-table tbody').text('')
     ).then(() => this.fetchWatchlistPlayers());
   }
 
-  removePlayer(e) {
+  static removePlayer(e) {
     e.preventDefault();
     const removePlayerId = document.getElementById('remove-player-id').value;
     const table = document.getElementById('watchlist-players-table');

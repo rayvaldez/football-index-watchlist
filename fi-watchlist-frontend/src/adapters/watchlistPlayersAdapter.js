@@ -6,7 +6,7 @@ class WatchlistPlayersAdapter {
 
   getWatchlistPlayers() {
     return fetch(this.baseUrl).then(res => res.json()
-  );
+    );
   }
 
   createWatchlistPlayer(playerJSON) {

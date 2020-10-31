@@ -1,1 +1,3 @@
-const app = new App();
+Player.fetchAndLoadPlayers();
+WatchlistPlayers.fetchWatchlistPlayers();
+WatchlistPlayers.initiBindingsAndEventListeners();
