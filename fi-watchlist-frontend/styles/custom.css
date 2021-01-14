@@ -24,6 +24,40 @@ display: block;
 }
 
 img {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -48px;
+}
+
+.d-block {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.p-market {
+  position: fixed;
+  top: 38px;
+  right: 86px;
+  font-size: 30px;
+  color: white;
+  font-family: "Brush Script MT", cursive;
+}
+
+.p-watchlist {
+  position: fixed;
+  top: 38px;
+  left: 346px;
+  font-size: 30px;
+  color: white;
+  font-family: "Brush Script MT", cursive;
+}
+
+img.watchlist-arrow {
+  padding-left: 25px;
+  padding-top: 25px;
+}
+
+img.market-arrow {
+  padding-left: 28px;
+  padding-top: 25px;
 }
