@@ -1,4 +1,4 @@
-# football-index-watchlist
+# Football Index Watchlist
 
 Football Index Watchlist allows you to track the movement of football player prices. It is built with a Javascript frontend and a Rails API backend.
 
