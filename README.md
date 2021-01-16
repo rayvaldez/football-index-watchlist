@@ -1,10 +1,34 @@
-# football-index-watchlist
+# Football Index Watchlist
 
 Football Index Watchlist allows you to track the movement of football player prices. It is built with a Javascript frontend and a Rails API backend.
 
 ## Description
 
 The Rails API is designed to simulate the share price movement of football players on the football stock market www.footballindex.co.uk. A Javascript frontend communicates with the API to display current share prices, and allows the user to add a player, along with the current share price, to a watchlist and follow the players progress.
+
+[!Homepage](styles/images/example1.png)
+
+The homepage displays two tables, the table on the right is the Player market, showing the top 50 players in order of price.  The table on the left is the Watchlist, populated with players that are currently being watched.
+
+[!Selection](styles/images/example2.png)
+
+Select a Player in the market by clicking on the players name. In this example we are choosing to watch Lionel Messi.
+
+[!Confirmation](stlyes/images/example3.png)
+
+A modal will appear asking to confirm the choice of player.
+
+[!Watchlist](styles/images/example4.png)
+
+Lionel Messi now appears on the bottom of the watchlist, along with a breakdown of his current price, price when added, and profit/loss.
+
+[!Price Movement](styles/images/example5.png)
+
+Refreshing the page updates the market price of the player. We can see now Lionel Messi has dropped in price.
+
+[!Update/Remove](styles/images/example6.png)
+
+To update the Players price, click on the update/remove button next to the Player in the watchlist. A modal will appear with the option to update the price to the current market price, or remove the player from the watchlist.
 
 ## Installation
 
